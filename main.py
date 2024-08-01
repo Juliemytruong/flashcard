@@ -1,12 +1,44 @@
 BACKGROUND_COLOR = "#B1DDC6"
-from tkinter import *
+from tkinter import*
+import random
+import pandas
 
+#-------------------setup data----------------#
+with open("french_words.csv","r") as data:
+    dataframe=pandas.read_csv(data)
+
+print (dataframe)
+
+
+
+#------------------Random word------------------#
+
+num=random.randint(0,len(dataframe))
+card=dataframe.iloc[num]
+f_card=dataframe.loc[num,"French"]
+e_card=dataframe.loc[num,"English"]
+
+
+print(card)
+print(f_card)
+print(e_card)
+
+
+#canvas.create_text(400,250,text="hello",font=("Ariel", 40, "italic"))
+#canvas.create_text(400,363,text="hello again",font=("Ariel", 65, "bold"))
+
+#--------------------Right--------------------------#
+
+
+
+
+#------------------Wrong-----------------------------#
 
 
 
 #-----------------------GUI------------------------#
 window=Tk()
-window.config(width=500, height=500,bg=BACKGROUND_COLOR)
+window.config(padx=10,pady=10,bg=BACKGROUND_COLOR)
 
 canvas=Canvas(width=800,height=580)
 card_side=PhotoImage(file="card_front.png")
