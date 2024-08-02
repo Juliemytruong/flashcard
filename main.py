@@ -24,6 +24,10 @@ print(f_card)
 print(e_card)
 
 
+data_dic=dataframe.to_dict(orient="records")
+print(data_dic)
+
+
 #canvas.create_text(400,250,text="hello",font=("Ariel", 40, "italic"))
 #canvas.create_text(400,363,text="hello again",font=("Ariel", 65, "bold"))
 
