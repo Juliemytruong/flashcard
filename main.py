@@ -2,7 +2,7 @@ BACKGROUND_COLOR = "#B1DDC6"
 from tkinter import*
 import random
 import pandas
-text_f=0
+num=0
 
 #-------------------setup data----------------#
 with open("french_words.csv","r") as data:
@@ -15,13 +15,13 @@ print (dataframe)
 #------------------Random word------------------#
 
 def word():
-
+    global num
     canvas.delete("text")
-    num=random.randint(0,len(dataframe))
+    num=random.randint(0,len(data_dic))
 
-
-    data_dic=dataframe.to_dict(orient="records")
-    print(data_dic)
+    #
+    # data_dic=dataframe.to_dict(orient="records")
+    # print(data_dic)
     data_c=data_dic[num]
     french_c=data_c.get("French")
     print(french_c)
@@ -35,10 +35,13 @@ def word():
 
 
 #--------------------Right--------------------------#
-# def right():
-#     global text_f
-#     canvas.delete("text_f")
-#     word()
+def right():
+    global num
+    word()
+    data_dic.pop(num)
+    print(len(data_dic))
+
+
 
 
 
@@ -66,10 +69,11 @@ buttonR = Button(image=right_image, highlightthickness=4,bg=BACKGROUND_COLOR)
 buttonR.grid(column=1,row=2,padx=50,pady=50)
 
 wrong_image = PhotoImage(file="wrong.png")
-buttonW = Button(image=wrong_image, highlightthickness=4,bg=BACKGROUND_COLOR,command=word)
+buttonW = Button(image=wrong_image, highlightthickness=4,bg=BACKGROUND_COLOR,command=right)
 buttonW.grid(column=2,row=2,padx=50,pady=50)
 
-
+data_dic = dataframe.to_dict(orient="records")
+print(data_dic)
 
 #my_image = PhotoImage(file="path/to/image_file.png")
 
