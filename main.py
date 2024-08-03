@@ -2,6 +2,7 @@ BACKGROUND_COLOR = "#B1DDC6"
 from tkinter import*
 import random
 import pandas
+import time
 num=0
 
 #-------------------setup data----------------#
@@ -19,15 +20,36 @@ def word():
     canvas.delete("text")
     num=random.randint(0,len(data_dic))
 
+    card_side = PhotoImage(file="card_front.png")
+    canvas.create_image(400, 320, image=card_side)
+    canvas.config(bg=BACKGROUND_COLOR, highlightbackground=BACKGROUND_COLOR)
+
     #
     # data_dic=dataframe.to_dict(orient="records")
     # print(data_dic)
+
+    canvas.delete("text_A")
+    canvas.delete("text")
+
     data_c=data_dic[num]
     french_c=data_c.get("French")
     print(french_c)
 
-    canvas.create_text(400,250,text="french",font=("Ariel", 40, "italic"))
+    canvas.create_text(400,250,text="french",font=("Ariel", 40, "italic"),tags="text_A")
     canvas.create_text(400,363,text=french_c,font=("Ariel", 65, "bold"),tags="text")
+
+    #time.sleep(2)
+    #
+    # english_c = data_c.get("English")
+    #
+    # card_back = PhotoImage(file="card_back.png")
+    # canvas.create_image(400, 320, image=card_back)
+    # canvas.config(bg=BACKGROUND_COLOR, highlightbackground=BACKGROUND_COLOR)
+    # canvas.delete("text_A")
+    # canvas.delete("text")
+    #canvas.create_text(400,250,text="English",font=("Ariel", 40, "italic"),tags="text_A")
+    # canvas.create_text(400,363,text=english_c,font=("Ariel", 65, "bold"),tags="text")
+
 
 
 
