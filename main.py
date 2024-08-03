@@ -47,6 +47,8 @@ def right():
 
 #------------------Wrong-----------------------------#
 
+def wrong():
+    word()
 
 
 #-----------------------GUI------------------------#
@@ -65,11 +67,11 @@ canvas.config(bg=BACKGROUND_COLOR, highlightbackground=BACKGROUND_COLOR)
 canvas.grid(column=1,row=1,columnspan=2,padx=10,pady=10)
 
 right_image = PhotoImage(file="right.png")
-buttonR = Button(image=right_image, highlightthickness=4,bg=BACKGROUND_COLOR)
+buttonR = Button(image=right_image, highlightthickness=4,bg=BACKGROUND_COLOR,command=right)
 buttonR.grid(column=1,row=2,padx=50,pady=50)
 
 wrong_image = PhotoImage(file="wrong.png")
-buttonW = Button(image=wrong_image, highlightthickness=4,bg=BACKGROUND_COLOR,command=right)
+buttonW = Button(image=wrong_image, highlightthickness=4,bg=BACKGROUND_COLOR,command=wrong)
 buttonW.grid(column=2,row=2,padx=50,pady=50)
 
 data_dic = dataframe.to_dict(orient="records")
