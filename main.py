@@ -10,7 +10,8 @@ with open("french_words.csv","r") as data:
     dataframe=pandas.read_csv(data)
 
 print (dataframe)
-
+data_dic = dataframe.to_dict(orient="records")
+print(data_dic)
 
 
 #------------------Random word------------------#
@@ -28,15 +29,19 @@ def word():
     # data_dic=dataframe.to_dict(orient="records")
     # print(data_dic)
 
-    canvas.delete("text_A")
-    canvas.delete("text")
+    # canvas.delete("text_A")
+    # canvas.delete("text")
+
 
     data_c=data_dic[num]
     french_c=data_c.get("French")
     print(french_c)
 
-    canvas.create_text(400,250,text="french",font=("Ariel", 40, "italic"),tags="text_A")
-    canvas.create_text(400,363,text=french_c,font=("Ariel", 65, "bold"),tags="text")
+    # canvas.create_text(400,250,text="french",font=("Ariel", 40, "italic"),tags="text_A")
+    # canvas.create_text(400,363,text=french_c,font=("Ariel", 65, "bold"),tags="text")
+
+    canvas.itemconfig(lang_text,text="French")
+    canvas.itemconfig(word_text,text=french_c)
 
     #time.sleep(2)
     #
@@ -81,8 +86,8 @@ canvas=Canvas(width=800,height=580)
 card_side=PhotoImage(file="card_front.png")
 canvas.create_image(400,320,image=card_side)
 canvas.config(bg=BACKGROUND_COLOR, highlightbackground=BACKGROUND_COLOR)
-#canvas.create_text(400,250,text="hello",font=("Ariel", 40, "italic"))
-#canvas.create_text(400,363,text="hello again",font=("Ariel", 65, "bold"))
+lang_text=canvas.create_text(400,250,text="hello",font=("Ariel", 40, "italic"))
+word_text=canvas.create_text(400,363,text="hello again",font=("Ariel", 65, "bold"))
 #text_f = canvas.create_text(400, 363, text="start", font=("Ariel", 65, "bold"))
 
 
@@ -96,8 +101,6 @@ wrong_image = PhotoImage(file="wrong.png")
 buttonW = Button(image=wrong_image, highlightthickness=4,bg=BACKGROUND_COLOR,command=wrong)
 buttonW.grid(column=2,row=2,padx=50,pady=50)
 
-data_dic = dataframe.to_dict(orient="records")
-print(data_dic)
 
 #my_image = PhotoImage(file="path/to/image_file.png")
 
