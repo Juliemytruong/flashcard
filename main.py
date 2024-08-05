@@ -13,50 +13,47 @@ print (dataframe)
 data_dic = dataframe.to_dict(orient="records")
 print(data_dic)
 
+#---------Card--------------------#
+def card_det(words,label,card):
+    card_side = PhotoImage(file=card)
+    canvas.create_image(400, 320, image=card_side)
+    canvas.config(bg=BACKGROUND_COLOR, highlightbackground=BACKGROUND_COLOR)
+
+    canvas.itemconfig(lang_text,text=label)
+    canvas.itemconfig(word_text,text=words)
+    print(words)
+
+
+
 
 #------------------Random word------------------#
 
 def word():
     global num
     canvas.delete("text")
-    num=random.randint(0,len(data_dic))
+    num=random.randint(0,(len(data_dic)-1))
 
-    card_side = PhotoImage(file="card_front.png")
-    canvas.create_image(400, 320, image=card_side)
-    canvas.config(bg=BACKGROUND_COLOR, highlightbackground=BACKGROUND_COLOR)
-
-    #
-    # data_dic=dataframe.to_dict(orient="records")
-    # print(data_dic)
-
-    # canvas.delete("text_A")
-    # canvas.delete("text")
-
+    #card_side = PhotoImage(file="card_front.png")
+    #canvas.create_image(400, 320, image=card_side)
+   # canvas.config(bg=BACKGROUND_COLOR, highlightbackground=BACKGROUND_COLOR)
 
     data_c=data_dic[num]
+
     french_c=data_c.get("French")
-    print(french_c)
+    english_c=data_c.get("English")
 
-    # canvas.create_text(400,250,text="french",font=("Ariel", 40, "italic"),tags="text_A")
-    # canvas.create_text(400,363,text=french_c,font=("Ariel", 65, "bold"),tags="text")
+    f_card="card_front.png"
+    e_card="card_back.png"
 
-    canvas.itemconfig(lang_text,text="French")
-    canvas.itemconfig(word_text,text=french_c)
+    f_label="French"
+    e_label="English"
 
-    #time.sleep(2)
-    #
-    # english_c = data_c.get("English")
-    #
-    # card_back = PhotoImage(file="card_back.png")
-    # canvas.create_image(400, 320, image=card_back)
-    # canvas.config(bg=BACKGROUND_COLOR, highlightbackground=BACKGROUND_COLOR)
-    # canvas.delete("text_A")
-    # canvas.delete("text")
-    #canvas.create_text(400,250,text="English",font=("Ariel", 40, "italic"),tags="text_A")
-    # canvas.create_text(400,363,text=english_c,font=("Ariel", 65, "bold"),tags="text")
+    card_det(french_c,f_label,f_card)
 
 
 
+
+    card_det(english_c,e_label,e_card)
 
 
 
